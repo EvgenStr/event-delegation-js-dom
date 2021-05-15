@@ -1,1 +1,7 @@
-
+.listWrap{
+  width:80%;
+  margin: 0 auto;
+}
+#usersTable{
+  width: 100%;
+}
