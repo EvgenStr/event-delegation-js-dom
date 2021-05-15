@@ -1,7 +1,13 @@
-.listWrap{
-  width:80%;
+* {
+  box-sizing: border-box;
+}
+.listWrap {
+  width: 80%;
   margin: 0 auto;
 }
-#usersTable{
+#usersTable {
+  width: 100%;
+}
+td > input {
   width: 100%;
 }
