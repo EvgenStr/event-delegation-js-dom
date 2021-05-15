@@ -8,6 +8,9 @@ document.addEventListener('click', toggleVisibility);
 
 function toggleVisibility(e) {
   if (!e.target.classList.contains('headListItem')) return;
-  const subList = e.target.querySelector('.subList');
-  subList.hidden = !subList.hidden;
+  const currentSubListItem = e.target.querySelector('.subList');
+  const subListItems = document.querySelectorAll('.subList');
+  const currentVisibility = currentSubListItem.hidden;
+  subListItems.forEach(item => item.hidden = true);
+  currentSubListItem.hidden = !currentVisibility;
 }
