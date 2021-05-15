@@ -21,12 +21,12 @@ function usersTableHandler(e) {
   }
 }
 
-function changeUser(e) {
-  const fieldValue = e.target.innerText;
+function changeUser({target}) {
+  const fieldValue = target.innerText;
   const input = document.createElement("input");
-  e.target.innerText = "";
+  target.innerText = "";
   input.value = fieldValue;
-  e.target.appendChild(input);
+  target.appendChild(input);
   input.addEventListener('keyup', inputHandler)
 }
 
