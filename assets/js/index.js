@@ -7,22 +7,32 @@
 2.3.  Создать два текстовых поля под таблицей, в которые можно вводить Name и Email и кнопку,
  которая добавит запись в таблицу.*/
 
- document.addEventListener("click", usersTableHandler);
+document.addEventListener("click", usersTableHandler);
 
- function usersTableHandler(e){
-   console.log(e.target);
-   switch(e.target.tagName){
-     case "TD":
-       changeUser(e);
-       break;
-   }
- }
+function usersTableHandler(e) {
+  // console.log(e.target);
+  switch (e.target.tagName) {
+    case "TD":
+      changeUser(e);
+      break;
+  }
+}
 
- function changeUser(e){
-   const fieldValue = e.target.innerText;
-   const input = document.createElement("input");
-   e.target.innerText = "";
-   input.value = fieldValue;
-   e.target.appendChild(input);
+function changeUser(e) {
+  const fieldValue = e.target.innerText;
+  const input = document.createElement("input");
+  e.target.innerText = "";
+  input.value = fieldValue;
+  e.target.appendChild(input);
+  input.addEventListener('keyup', inputHandler)
+}
 
- }
+function inputHandler(e) {
+  // console.log(e.keyCode)
+  if (e.key === 'Enter' || e.keyCode === 13) {
+    const inputValue = e.target.value;
+    const parentTd = e.target.closest('td');
+    parentTd.innerText = inputValue;
+    e.target.remove();
+  }
+}
