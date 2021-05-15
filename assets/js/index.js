@@ -56,14 +56,19 @@ function deleteField(e) {
 function createUserFormHandler(e) {
   e.preventDefault();
   const formValues = new FormData(createUserForm);
-  console.log(formValues)
+  usersTable.append(createTableRow(formValues));
+  e.target.reset();
 }
 
 function createTableRow(data) {
-  const newRow = [];
+  const newRow = document.createElement('tr');
+  const buttonDelete = document.createElement('button');
   for (const [name, value] of data) {
-    const tr = document.createElement('tr');
-    tr.innerText = value;
-    newRow.push(tr);
+    const td = document.createElement('td');
+    td.innerText = value;
+    newRow.appendChild(td);
   }
+  buttonDelete.innerText = 'Delete';
+  newRow.appendChild(buttonDelete);
+  return newRow;
 }
