@@ -15,6 +15,9 @@ function usersTableHandler(e) {
     case "TD":
       changeUser(e);
       break;
+    case "BUTTON":
+      deleteField(e);
+      break;
   }
 }
 
@@ -28,11 +31,17 @@ function changeUser(e) {
 }
 
 function inputHandler(e) {
-  // console.log(e.keyCode)
   if (e.key === 'Enter' || e.keyCode === 13) {
     const inputValue = e.target.value;
     const parentTd = e.target.closest('td');
     parentTd.innerText = inputValue;
     e.target.remove();
+  }
+}
+
+function deleteField(e) {
+  const parentTr = e.target.closest('tr');
+  if (confirm('Are you sure you want to delete this user?')) {
+    parentTr.remove()
   }
 }
