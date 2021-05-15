@@ -7,13 +7,20 @@
 2.3.  Создать два текстовых поля под таблицей, в которые можно вводить Name и Email и кнопку,
  которая добавит запись в таблицу.*/
 
-document.addEventListener("click", usersTableHandler);
+const usersTable = document.getElementById('usersTable');
+const createUserForm = document.getElementById('createUserForm');
+
+usersTable.addEventListener("click", usersTableHandler);
+createUserForm.addEventListener("submit", createUserFormHandler);
 
 function usersTableHandler(e) {
-  // console.log(e.target);
+  console.log(e.target);
   switch (e.target.tagName) {
     case "TD":
       changeUser(e);
+      break;
+    case "FORM":
+
       break;
     case "BUTTON":
       deleteField(e);
@@ -21,7 +28,7 @@ function usersTableHandler(e) {
   }
 }
 
-function changeUser({target}) {
+function changeUser({ target }) {
   const fieldValue = target.innerText;
   const input = document.createElement("input");
   target.innerText = "";
@@ -41,7 +48,22 @@ function inputHandler(e) {
 
 function deleteField(e) {
   const parentTr = e.target.closest('tr');
-  if (confirm('Are you sure you want to delete this user?')) {
+  if (confirm('Are you sure you want to delete this user?') && parentTr) {
     parentTr.remove()
+  }
+}
+
+function createUserFormHandler(e) {
+  e.preventDefault();
+  const formValues = new FormData(createUserForm);
+  console.log(formValues)
+}
+
+function createTableRow(data) {
+  const newRow = [];
+  for (const [name, value] of data) {
+    const tr = document.createElement('tr');
+    tr.innerText = value;
+    newRow.push(tr);
   }
 }
