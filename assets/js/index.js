@@ -10,5 +10,19 @@
  document.addEventListener("click", usersTableHandler);
 
  function usersTableHandler(e){
-   
+   console.log(e.target);
+   switch(e.target.tagName){
+     case "TD":
+       changeUser(e);
+       break;
+   }
+ }
+
+ function changeUser(e){
+   const fieldValue = e.target.innerText;
+   const input = document.createElement("input");
+   e.target.innerText = "";
+   input.value = fieldValue;
+   e.target.appendChild(input);
+
  }
